@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('saucedemo login and add to cart', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com/');
-
+    await page.goto('/');
     // Fill in username and password fields     
         await page.getByPlaceholder('Username').fill('locked_out_user');
         await page.getByPlaceholder('Password').fill('secret_sauce');
