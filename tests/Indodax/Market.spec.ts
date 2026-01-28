@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 const url = 'https://indodax.com/';
+
 test('Verify Main Page', async ({ page }) => {
   await page.goto(url);
     // Expect a title "to contain" a substring.
