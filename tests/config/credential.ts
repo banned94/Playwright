@@ -7,5 +7,6 @@ export const credentials = {
   password: process.env.PASSWORD!,
   usernameLocked: process.env.LOCKED_OUT_USER!,
   usernameProblem: process.env.PROBLEM_USER!,
-  usernamePerformance: process.env.USERNAMEPERFORMANCE!,
+  usernamePerformance: process.env.PERFORMANCE_GLITCH_USER!,
+  usernameVisual: process.env.VISUAL_USER!
 };
