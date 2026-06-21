@@ -5,7 +5,7 @@ dotenv.config();
 export const credentials = {
   username: process.env.STANDARD_USER!,
   password: process.env.PASSWORD!,
-  usernameLocked: process.env.USERNAMELOCKED!,
-  usernameProblem: process.env.USERNAMEPROBLEM!,
+  usernameLocked: process.env.LOCKED_OUT_USER!,
+  usernameProblem: process.env.PROBLEM_USER!,
   usernamePerformance: process.env.USERNAMEPERFORMANCE!,
 };
