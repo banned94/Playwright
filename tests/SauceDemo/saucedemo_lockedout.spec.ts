@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {SauceDemoAssets as MyPage} from './data/saucedemo_assets';
-import { credentials } from '../config/credential';
+import { credentials } from './data/credential';
 import { login } from './helper/login';
 import dotenv from 'dotenv';
 dotenv.config();
