@@ -1,19 +1,25 @@
 import { test, expect } from '@playwright/test';
+import {SauceDemoAssets as MyPage } from './data/saucedemo_assets';
+import { credentials } from './data/credential';
+import { login } from './helper/login';
+import dotenv from 'dotenv';
+dotenv.config();
 
-test('saucedemo login and add to cart', async ({ page }) => {
-  await page.goto('https://www.saucedemo.com/');
-
-    // Fill in username and password fields     
-        await page.getByPlaceholder('Username').fill('standard_user');
-        await page.getByPlaceholder('Password').fill('secret_sauce');
-            // Click the login button   
-                await page.getByRole('button', { name: 'Login' }).click();
-                    // Expects the products page to be visible      
-                        await expect(page.getByText('Products')).toBeVisible();
-                        // Add the first item to the cart
-                            await page.getByRole('button', { name: 'Add to cart', exact: true }).first().click();
-                            // Navigate to the cart
-                                await page.locator('[data-test="shopping-cart-link"]').click();
-                                // Expects the item to be in the cart
-                                    await expect(page.getByText('Sauce Labs Backpack')).toBeVisible();
+test('Checkout', async ({ page }) => {
+    const saucedemo = new MyPage(page);
+    await login(page, credentials.username, credentials.password);
+    await expect(page.getByText('Products')).toBeVisible();
+    await saucedemo.buttonAddToCart.first().click();
+    await saucedemo.shoppingCartLink.click();
+    await expect(page.getByText('Sauce Labs Backpack')).toBeVisible();
+    await saucedemo.checkoutButton.click();
+    await saucedemo.firstNameInput.fill('John');
+    await saucedemo.lastNameInput.fill('Doe');
+    await saucedemo.postalCodeInput.fill('12345');
+    await saucedemo.continueButton.click();
+    await expect(page.getByText('Sauce Labs Backpack')).toBeVisible();
+    await saucedemo.finishButton.click();
+    await expect(page.getByText('THANK YOU FOR YOUR ORDER')).toBeVisible();
 });
+
+
